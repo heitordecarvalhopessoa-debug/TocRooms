@@ -11,12 +11,13 @@
 <body>
     <div class="site">
         <div class="header">
-            <div class="brand-art">TocRooms</div>
+            <div class="brand-art">TocRooms<small>BETA 1</small></div>
         </div>
 
         <nav class="nav">
             <a href="index.html">Home</a>
             <a href="src/pages/maps.html">Maps</a>
+            <a href="src/pages/customize.html">Customize</a>
             <a href="src/pages/news.html">News</a>
             <a href="src/pages/info.html">Info</a>
         </nav>
@@ -26,21 +27,15 @@
                 <section>
                     <h1>Welcome to TocRooms!</h1>
                     <p>
-                        To get started, explore other people's maps
-                        or discover new places created by the community.
+                        To get started, explore the available maps and have some fun!
                     </p>
                     <p>
-                        Visit a map, look around, and find inspiration
-                        for your own creations. TocRooms is a place
-                        to build, explore, and share.
+                        Visit a map, play, enjoy yourself, and watch others
+                        playing too.
                     </p>
                     <p>
                         More creation tools and community features
-                        are coming soon. Stay tuned!
-                    </p>
-
-                    <p>
-                        <a href="src/pages/maps.html">Explore all maps</a>
+                        are coming soon. Check out the <a href="src/pages/news.html">News</a> tab to learn more.
                     </p>
                 </section>
 
@@ -48,11 +43,11 @@
                     <h2>Join TocRooms</h2>
                     <p>
                         Explore maps and discover the community
-                        without creating an account.
+                        without creating an account!
                     </p>
 
                     <button id="anonymousButton" type="button">
-                        Enter as Anonymous
+                        Enter
                     </button>
                     <button id="logoutAnonymousButton" type="button" style="display: none;">
                         Leave
@@ -62,6 +57,17 @@
                         You are not connected yet.
                     </p>
                 </aside>
+
+                <section>
+                    <h1>See Now</h1>
+                    <nav aria-label="TocRooms Navigation">
+                    <ul>
+                        <li><a href="src/pages/maps.html">Explore all maps</a></li>
+                        <li><a href="src/pages/info.html">See about TocRooms and The Future</a></li>
+                        <li><a href="src/pages/news.html">See the news and future updates in TocRooms</a></li>
+                    </ul>
+                    </nav>
+                </section>
             </div>
 
             <section class="panel recent">
@@ -72,21 +78,20 @@
                 <div class="card-grid">
                     <div class="place-card">
                         <div class="place-preview"></div>
-                        <h3><a href="maps/plane.html">Plane</a></h3>
+                        <h2><a href="maps/plane.html">Plane</a></h2>
                         <p>A simple green flat terrain</p>
-                        <span class="meta">By Hecctor · <a href="maps/plane.html">Play Map</a></span>
+                        <h3 class="meta">By Hecctor · <a href="src/pages/basemaps/plane.html">Play Map</a></h3>
                     </div>
                 </div>
             </section>
         </main>
         <footer>
-            TOCROOMS, an online building community. All rights reserved.
+            <b>TOCROOMS</b>, an online building community.
             <br>
-            <a href="src/pages/info.html">Privacy</a> |
-            <a href="src/pages/info.html">Contact Us</a> |
-            <a href="src/pages/info.html">About Us</a>
+            <a href="maps.html">Maps</a> |
+            <a href="news.html">News</a> |
+            <a href="info.html">About TocRooms</a>
             <br>
-            Use of this site signifies your acceptance of the Terms and Conditions.
         </footer>
 
     </div>
