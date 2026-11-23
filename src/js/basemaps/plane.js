@@ -1,15 +1,36 @@
 function createPlane(scene) {
+    const obstacleGroup = new THREE.Group();
+    const platforms = [];
     const groundGeo = new THREE.BoxGeometry(200, 1, 200);
     const groundMat = new THREE.MeshLambertMaterial({ color: 0x3d963d });
     const ground = new THREE.Mesh(groundGeo, groundMat);
     ground.position.y = -0.5;
     scene.add(ground);
 
-    const gridHelper = new THREE.GridHelper(200, 100, 0x2e752e, 0x358535);
-    gridHelper.position.y = 0.01;
-    scene.add(gridHelper);
+    scene.add(obstacleGroup);
 
-    return ground;
+    return {
+        platforms,
+        groundY: 0
+    };
+}
+
+function updatePlayerListUI(players) {
+    const countEl = document.getElementById("playerCount");
+    const listEl = document.getElementById("playerList");
+    if (!countEl || !listEl) return;
+
+    countEl.textContent = players.length;
+    listEl.innerHTML = "";
+
+    players.forEach((p) => {
+        const li = document.createElement("li");
+        li.textContent = p.isLocal ? p.username + " (You)" : p.username;
+        if (p.isLocal) {
+            li.classList.add("local-player");
+        }
+        listEl.appendChild(li);
+    });
 }
 
 const canvas = document.getElementById("gameCanvas");
@@ -35,14 +56,25 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 0.75);
 dirLight.position.set(40, 80, 30);
 scene.add(dirLight);
 
-createPlane(scene);
+const planeMap = createPlane(scene);
 const player = createPlayer(scene);
 const cameraController = createCameraController(camera);
-const multiplayer = createMultiplayer(scene, player);
+const multiplayer = createMultiplayer(scene, player, updatePlayerListUI, "plane");
+
+function checkPlaneCollisions(pos, velocityY) {
+    let grounded = false;
+    let targetY = planeMap.groundY;
+
+    if (pos.y <= planeMap.groundY && velocityY <= 0) {
+        grounded = true;
+        targetY = planeMap.groundY;
+    }
+    return { grounded, y: targetY };
+}
 
 function animate() {
     requestAnimationFrame(animate);
-    player.update(cameraController.getYaw());
+    player.update(cameraController.getYaw(), checkPlaneCollisions);
     cameraController.update(player.mesh.position);
     multiplayer.sync();
     renderer.render(scene, camera);
